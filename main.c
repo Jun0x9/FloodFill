@@ -26,6 +26,9 @@ int main( void ){
 		mouse_pos = ( Vector2 ) GetMousePosition( ) ; 
 		row = (int)(mouse_pos.y / CELL_SIZE ); 
 		col = (int)(mouse_pos.x / CELL_SIZE) ; 
+		
+		if( IsKeyPressed( KEY_ENTER )) 
+			emptyCells() ;
 
 		if( IsMouseButtonPressed( MOUSE_LEFT_BUTTON ) ) {
 			if( cells[ row ] [ col ] == EMPTY ){
@@ -50,15 +53,23 @@ int main( void ){
 
 }
 
+void emptyCells( ) { 
+	for(int i = 0; i < ROWS; i ++)  	
+		for( int j = 0; j < COLS ; j++){ 
+			cells [ i ][ j ] = EMPTY; 
+		}
+	return;  
+}
+
 
 void renderCells( ) { 
 	for(int i = 0; i < ROWS; i ++)  	
 		for( int j = 0; j < COLS ; j++){ 
 			if( cells [ i ][ j ] == FILLED ){ 
-				DrawRectangle( j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, GREEN) ;
+				DrawRectangle( j * CELL_SIZE, i * CELL_SIZE, CELL_SIZE, CELL_SIZE, GRAY) ;
 			}
 			if( cells [ i ][ j ] == OBSTACLE){ 
-				DrawRectangle( j * CELL_SIZE , i * CELL_SIZE, CELL_SIZE, CELL_SIZE, RED) ;
+				DrawRectangle( j * CELL_SIZE , i * CELL_SIZE, CELL_SIZE, CELL_SIZE, WHITE) ;
 			}
 	}		
 	for(int i = 0; i < ROWS; i ++) { 	
